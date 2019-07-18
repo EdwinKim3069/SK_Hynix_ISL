@@ -4,7 +4,7 @@ from __future__ import division
 
 import numpy as np
 import matplotlib.pyplot as plt
-from tqdm import tqdm
+from tqdm import tqdm_notebook
 
 # 정규분포를 따르는 합성데이터 생성함수 정의
 def generate_normal(n_samples, train_test_ratio=0.8, val_portion=0, seed=2019):
@@ -176,7 +176,7 @@ def fit(w, b, X, Y, num_iterations, learning_rate, print_cost=False):
     
     costs = []
     
-    for i in tqdm(range(num_iterations)):
+    for i in tqdm_notebook(range(num_iterations)):
         
         # Cost and gradient calculation (≈ 1-4 lines of code)
         ### START CODE HERE ### 
