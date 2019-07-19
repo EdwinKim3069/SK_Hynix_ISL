@@ -13,8 +13,8 @@ def generate_normal(n_samples, train_test_ratio=0.8, val_portion=0, seed=2019):
     n_train = int(n * train_test_ratio)
     X1 = np.random.normal(loc=10, scale=5, size=(n, 2))
     X2 = np.random.normal(loc=20, scale=5, size=(n, 2))
-    Y1 = np.ones(n)
-    Y2 = np.zeros(n)
+    Y2 = np.ones(n)
+    Y1 = np.zeros(n)
     X_test = np.concatenate((X1[n_train:], X2[n_train:]))
     Y_test = np.concatenate((Y1[n_train:], Y2[n_train:]))
     if val_portion:
@@ -32,8 +32,8 @@ def generate_normal(n_samples, train_test_ratio=0.8, val_portion=0, seed=2019):
 
 # 데이터 플롯 함수 정의
 def plot(data, labels, title='Train data', s=35, axis=False, xlim=None, ylim=None):
-    plt.scatter(data.T[labels==1][:, 0], data.T[labels==1][:, 1], color='b', edgecolor='k', label='label : 1', s=s)
-    plt.scatter(data.T[labels==0][:, 0], data.T[labels==0][:, 1], color='r', edgecolor='k', label='label : 0', s=s)
+    plt.scatter(data.T[labels==1][:, 0], data.T[labels==1][:, 1], color='r', edgecolor='k', label='label : 1', s=s)
+    plt.scatter(data.T[labels==0][:, 0], data.T[labels==0][:, 1], color='b', edgecolor='k', label='label : 0', s=s)
     plt.grid(True)
     plt.title(title)
     plt.legend()
@@ -44,9 +44,10 @@ def plot(data, labels, title='Train data', s=35, axis=False, xlim=None, ylim=Non
         plt.xlim(*xlim)
     if ylim:
         plt.ylim(*ylim)
-    
-    
-    # Decision boundary를 그리는 함수정의
+    return None
+
+
+# Decision boundary를 그리는 함수정의
 # meshgrid 메소드이용
 def decision_boundary(w, b, xlim, ylim, colormap):
     xmin, xmax = xlim
@@ -58,8 +59,9 @@ def decision_boundary(w, b, xlim, ylim, colormap):
     plt.contour(xx, yy, Z, levels=[0.5], colors='k')
     if colormap == True:
         plt.contourf(xx, yy, Z, cmap='RdBu', alpha=0.7)
-        
-        
+    return None
+
+
 def draw_boundary(w, b, data, labels, title='Train data', colormap=False, s=35, axis=False, xlim=None, ylim=None):
     # 먼저 데이터 플롯한다
     plot(data, labels, title=title, s=s, axis=axis, xlim=xlim, ylim=ylim)
@@ -68,6 +70,7 @@ def draw_boundary(w, b, data, labels, title='Train data', colormap=False, s=35, 
     ylim = axes.get_ylim()
     # 학습모델의 Decision boundary
     decision_boundary(w, b, xlim, ylim, colormap)
+    return None
     
 def sigmoid(z):
     '''
